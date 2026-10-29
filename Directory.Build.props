@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <RootNamespace>Toarnbeike.AppLibrary</RootNamespace>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<Company>Toarnbeike</Company>
+	<Authors>Toarnbeike</Authors>
+	<Version>0.1.0</Version>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<RepositoryUrl>https://github.com/Toarnbeike/Toarnbeike.AppLibrary</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/Toarnbeike/Toarnbeike.AppLibrary</PackageProjectUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+</Project>
