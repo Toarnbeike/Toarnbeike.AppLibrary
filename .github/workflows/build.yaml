@@ -38,7 +38,9 @@ jobs:
           mkdir -p artifacts/tunit
           FAILED=0
 
-          projects=()
+          projects=(
+            "tests/Entities.Tests/Entities.Tests.csproj"
+          )
 
           for project in "${projects[@]}"; do
             name=$(basename "$(dirname "$project")")

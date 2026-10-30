@@ -1,15 +1,18 @@
 <Solution>
   <Folder Name="/docs/" />
-  <Folder Name="/SolutionItems/">
+  <Folder Name="/Solution Items/">
     <File Path="CHANGELOG.md" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
     <File Path="README.md" />
   </Folder>
-  <Folder Name="/src/" />
-  <Folder Name="/tests/" />
-  <Folder Name="/tools/" />
-  <Folder Name="/workflows/" >
+  <Folder Name="/src/">
+    <Project Path="src/Entities/Entities.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Entities.Tests/Entities.Tests.csproj" />
+  </Folder>
+  <Folder Name="/workflows/">
     <File Path=".github/workflows/build.yaml" />
     <File Path=".github/workflows/versionCheck.yaml" />
   </Folder>
