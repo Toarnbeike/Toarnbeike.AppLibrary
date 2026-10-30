@@ -1,8 +1,8 @@
 <Solution>
   <Folder Name="/docs/" />
   <Folder Name="/example/">
-    <Project Path="example/Api/Api.csproj" />
 	<File Path="example/Directory.Build.props" />
+    <Project Path="example/Api/Api.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="CHANGELOG.md" />
@@ -11,9 +11,11 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/Core/Core.csproj" />
     <Project Path="src/Entities/Entities.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Core.Tests/Core.Tests.csproj" />
     <Project Path="tests/Entities.Tests/Entities.Tests.csproj" />
   </Folder>
   <Folder Name="/workflows/">

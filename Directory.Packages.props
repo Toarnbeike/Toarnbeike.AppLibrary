@@ -2,6 +2,13 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
+  <ItemGroup Label="Microsoft.Extensions">
+	<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+	<PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.14" />
+	<PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.14" />
+	<PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.14" />
+  </ItemGroup>
   <ItemGroup Label="Toarnbeike">
     <PackageVersion Include="Toarnbeike.Optional.Abstractions" Version="2.1.0" />
     <PackageVersion Include="Toarnbeike.Results" Version="3.0.0-beta.2" />
@@ -11,8 +18,5 @@
     <PackageVersion Include="NSubstitute" Version="6.2.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="TUnit" Version="1.72.16" />
-  </ItemGroup>
-  <ItemGroup Label="ASP.NET">
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" />
   </ItemGroup>
 </Project>
