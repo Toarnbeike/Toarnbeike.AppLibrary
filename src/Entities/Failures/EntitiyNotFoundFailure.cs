@@ -34,5 +34,5 @@ public sealed record EntitiyNotFoundFailure<TEntity> : DomainFailure
     /// <param name="byId">The ID of the entity that was not found.</param>
     /// <remarks>The entity ID is used to provide context about the search criteria that led to the entity not being found.</remarks>
     public EntitiyNotFoundFailure(IEntityId byId) : base($"Entity of type {typeof(TEntity)} not found") =>
-        SearchDescription = $"For id {byId}";
+        SearchDescription = $"By id '{byId}'";
 }

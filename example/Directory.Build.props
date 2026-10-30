@@ -1,0 +1,8 @@
+<Project>
+  <!-- Explicitly import the parent Directory.Build.props from higher up the tree -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+  
+  <PropertyGroup>
+    <RootNamespace>Toarnbeike.AppLibrary.TicketApp</RootNamespace>
+  </PropertyGroup>
+</Project>

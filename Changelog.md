@@ -8,5 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 Initial release (internal)
 
 ### Added
-- Project setup
-- `Entities` library with entity interfaces, auditing support, strongly typed IDs, DomainEvents and Transitions for immutable domain objects.
+- `Entities` library with:
+	- Entity interfaces, with auditing support and strongly typed IDs, 
+	- Transitions for immutable domain objects, with extensions.
+	- Domain failures with extensions
+	- DomainEvents
+
+- `TicketApp` (example app) with:
+	- Domain model for a ticketing system, with detailed transition logic and domain validation.
+
+- Full test coverage for non-example code.

@@ -26,7 +26,7 @@ public class EntityNotFoundFailureTests
         var failure = new EntitiyNotFoundFailure<TestEntity>(entityId);
 
         failure.ShouldNotBeNull();
-        failure.SearchDescription.ShouldBe($"For id {entityId}");
+        failure.SearchDescription.ShouldBe($"By id '{entityId}'");
         failure.Type.ShouldBe(typeof(TestEntity));
         failure.Message.ShouldBe($"Entity of type {typeof(TestEntity)} not found");
         failure.Category.ShouldBe(FailureCategory.Business);

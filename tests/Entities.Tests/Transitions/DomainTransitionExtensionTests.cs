@@ -18,14 +18,12 @@ public class DomainTransitionExtensionTests
     public void Created_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
 
-        var transition = entity.Created(event1, event2);
+        var transition = entity.Created(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
 
         transition.Events.Count.ShouldBe(2);
-        transition.Events[0].ShouldBe(event1);
-        transition.Events[1].ShouldBe(event2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
     }
 
     [Test]
@@ -44,14 +42,12 @@ public class DomainTransitionExtensionTests
     public void Modified_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
 
-        var transition = entity.Modified(event1, event2);
+        var transition = entity.Modified(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
 
         transition.Events.Count.ShouldBe(2);
-        transition.Events[0].ShouldBe(event1);
-        transition.Events[1].ShouldBe(event2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
     }
 
     [Test]
@@ -70,13 +66,86 @@ public class DomainTransitionExtensionTests
     public void Deleted_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
 
-        var transition = entity.Deleted(event1, event2);
+        var transition = entity.Deleted(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
 
         transition.Events.Count.ShouldBe(2);
-        transition.Events[0].ShouldBe(event1);
-        transition.Events[1].ShouldBe(event2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+    }
+
+    [Test]
+    public void CreatedDerived_Transition_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Created<DerivedTestEntity, TestEntity>();
+
+        transition.ShouldBeOfType<Transition<TestEntity>>();
+        transition.Value.ShouldBe(entity);
+        transition.Type.ShouldBe(TransitionType.Created);
+        transition.Events.ShouldBeEmpty();
+    }
+
+    [Test]
+    public void CreatedDerived_Transition_WithEvents_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Created<DerivedTestEntity, TestEntity>(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
+
+        transition.Events.Count.ShouldBe(2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+    }
+
+    [Test]
+    public void ModifiedDerived_Transition_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Modified<DerivedTestEntity, TestEntity>();
+
+        transition.ShouldBeOfType<Transition<TestEntity>>();
+        transition.Value.ShouldBe(entity);
+        transition.Type.ShouldBe(TransitionType.Modified);
+        transition.Events.ShouldBeEmpty();
+    }
+
+    [Test]
+    public void ModifiedDerived_Transition_WithEvents_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Modified<DerivedTestEntity, TestEntity>(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
+
+        transition.Events.Count.ShouldBe(2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+    }
+
+    [Test]
+    public void DeletedDerived_Transition_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Deleted<DerivedTestEntity, TestEntity>();
+
+        transition.ShouldBeOfType<Transition<TestEntity>>();
+        transition.Value.ShouldBe(entity);
+        transition.Type.ShouldBe(TransitionType.Deleted);
+        transition.Events.ShouldBeEmpty();
+    }
+
+    [Test]
+    public void DeletedDerived_Transition_WithEvents_ShouldHaveCorrectProperties()
+    {
+        var entity = new DerivedTestEntity(TestEntityId.New(), "Test Name", 42);
+
+        var transition = entity.Deleted<DerivedTestEntity, TestEntity>(entity => new TestEvent(entity.Id), entity => new TestEvent(entity.Id));
+
+        transition.Events.Count.ShouldBe(2);
+        transition.Events[0].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
+        transition.Events[1].ShouldBeOfType<TestEvent>().Id.ShouldBe(entity.Id);
     }
 }

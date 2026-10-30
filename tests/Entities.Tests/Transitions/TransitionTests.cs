@@ -18,8 +18,8 @@ public class TransitionTests
     public void Created_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
+        var event1 = new TestEvent(TestEntityId.New());
+        var event2 = new TestEvent(TestEntityId.New());
 
         var transition = Transition<TestEntity>.Created(entity, event1, event2);
 
@@ -44,8 +44,8 @@ public class TransitionTests
     public void Modified_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
+        var event1 = new TestEvent(TestEntityId.New());
+        var event2 = new TestEvent(TestEntityId.New());
 
         var transition = Transition<TestEntity>.Modified(entity, event1, event2);
 
@@ -70,8 +70,8 @@ public class TransitionTests
     public void Deleted_Transition_WithEvents_ShouldHaveCorrectProperties()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var event1 = new TestEvent(Guid.NewGuid());
-        var event2 = new TestEvent(Guid.NewGuid());
+        var event1 = new TestEvent(TestEntityId.New());
+        var event2 = new TestEvent(TestEntityId.New());
 
         var transition = Transition<TestEntity>.Deleted(entity, event1, event2);
 
@@ -84,9 +84,9 @@ public class TransitionTests
     public void AddEvents_ShouldAppendEventsToExistingTransition()
     {
         var entity = new TestEntity(TestEntityId.New(), "Test Name");
-        var initialEvent = new TestEvent(Guid.NewGuid());
-        var additionalEvent1 = new TestEvent(Guid.NewGuid());
-        var additionalEvent2 = new TestEvent(Guid.NewGuid());
+        var initialEvent = new TestEvent(TestEntityId.New());
+        var additionalEvent1 = new TestEvent(TestEntityId.New());
+        var additionalEvent2 = new TestEvent(TestEntityId.New());
         var transition = Transition<TestEntity>.Created(entity, initialEvent);
 
         var updatedTransition = transition.AddEvents(additionalEvent1, additionalEvent2);
