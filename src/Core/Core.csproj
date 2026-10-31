@@ -13,4 +13,8 @@
 		
 		<PackageReference Include="Toarnbeike.Results" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Core.Tests" />
+	</ItemGroup>
 </Project>

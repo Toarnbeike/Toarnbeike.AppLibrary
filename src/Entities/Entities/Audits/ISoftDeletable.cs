@@ -6,7 +6,6 @@
 /// <remarks>Soft delete enables entities to be marked as deleted without physically removing them from the data store.</remarks>
 /// <typeparam name="TSelf">The implementing entity type that supports soft deletion and is returned when updating soft-delete metadata.</typeparam>
 public interface ISoftDeletable<out TSelf>
-    where TSelf : ISoftDeletable<TSelf>
 {
     /// <summary>
     /// Gets the soft delete information for the entity.
