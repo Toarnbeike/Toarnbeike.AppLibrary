@@ -1,7 +1,9 @@
 ﻿using System.Collections.Immutable;
 using Toarnbeike.AppLibrary.Results;
+using Toarnbeike.AppLibrary.TicketApp.Projects;
 using Toarnbeike.AppLibrary.TicketApp.WorkItemTasks;
 using Toarnbeike.AppLibrary.Transitions;
+using Toarnbeike.Optional;
 using Toarnbeike.Results;
 using Toarnbeike.Results.Extensions;
 using Toarnbeike.Results.Rules;
@@ -22,14 +24,15 @@ namespace Toarnbeike.AppLibrary.TicketApp.WorkItems;
 /// <param name="Tasks">Tasks required to implement the feature.</param>
 public sealed record Feature(
     WorkItemId Id,
+    ProjectId ProjectId,
     string Name,
     string Description,
     string RequestedBy,
     int BusinessValue,
-    int? Effort,
+    Option<int> Effort,
     WorkItemState Status,
     ImmutableList<WorkItemTask> Tasks)
-    : WorkItem(Id, Name, Description, "Feature", Effort, Status, Tasks)
+    : WorkItem(Id, ProjectId, Name, Description, "Feature", Effort, Status, Tasks)
 {
     /// <summary>
     /// Updates the work item name and description and produces a modification transition.

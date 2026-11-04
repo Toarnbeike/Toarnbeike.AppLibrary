@@ -1,7 +1,9 @@
 ﻿using System.Collections.Immutable;
 using Toarnbeike.AppLibrary.Results;
+using Toarnbeike.AppLibrary.TicketApp.Projects;
 using Toarnbeike.AppLibrary.TicketApp.WorkItemTasks;
 using Toarnbeike.AppLibrary.Transitions;
+using Toarnbeike.Optional;
 using Toarnbeike.Results;
 using Toarnbeike.Results.Extensions;
 using Toarnbeike.Results.Rules;
@@ -20,12 +22,13 @@ namespace Toarnbeike.AppLibrary.TicketApp.WorkItems;
 /// <param name="Tasks">Tasks associated with the work item.</param>
 public sealed record Refactoring(
     WorkItemId Id,
+    ProjectId ProjectId,
     string Name,
     string Description,
-    int? Effort,
+    Option<int> Effort,
     WorkItemState Status,
     ImmutableList<WorkItemTask> Tasks)
-    : WorkItem(Id, Name, Description, "Refactoring", Effort, Status, Tasks)
+    : WorkItem(Id, ProjectId, Name, Description, "Refactoring", Effort, Status, Tasks)
 {
     /// <summary>
     /// Updates the work item name and description and produces a modification transition.

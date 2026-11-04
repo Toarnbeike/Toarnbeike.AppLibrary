@@ -1,7 +1,9 @@
 ﻿using System.Collections.Immutable;
 using Toarnbeike.AppLibrary.Results;
+using Toarnbeike.AppLibrary.TicketApp.Projects;
 using Toarnbeike.AppLibrary.TicketApp.WorkItemTasks;
 using Toarnbeike.AppLibrary.Transitions;
+using Toarnbeike.Optional;
 using Toarnbeike.Results;
 using Toarnbeike.Results.Extensions;
 using Toarnbeike.Results.Rules;
@@ -22,15 +24,16 @@ namespace Toarnbeike.AppLibrary.TicketApp.WorkItems;
 /// <param name="Status">Current workflow state of the bug.</param>
 /// <param name="Tasks">Tasks associated with resolving the bug.</param>
 public sealed record Bug(
-    WorkItemId Id, 
+    WorkItemId Id,
+    ProjectId ProjectId,
     string Name,
     string Description,
     string ReproduceSteps, 
     int Impact,
-    int? Effort,
+    Option<int> Effort,
     WorkItemState Status, 
     ImmutableList<WorkItemTask> Tasks) 
-    : WorkItem(Id, Name, Description, "Bug", Effort, Status, Tasks)
+    : WorkItem(Id, ProjectId, Name, Description, "Bug", Effort, Status, Tasks)
 {
     /// <summary>
     /// Updates the work item name and description and produces a modification transition.

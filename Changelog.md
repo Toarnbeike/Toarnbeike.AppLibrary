@@ -29,6 +29,6 @@ Initial release (internal)
 
 - `TicketApp` (example app) with:
 	- Domain model for a ticketing system, with detailed transition logic and domain validation.
-	- Next step: State model with snapshots
+	- Snapshot mapping and migration for the domain model, with dependency injection registration.
 
 - Full test coverage for non-example code.

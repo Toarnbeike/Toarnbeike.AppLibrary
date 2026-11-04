@@ -2,8 +2,10 @@
 using Toarnbeike.AppLibrary.Entities;
 using Toarnbeike.AppLibrary.Entities.Audits;
 using Toarnbeike.AppLibrary.Results;
+using Toarnbeike.AppLibrary.TicketApp.Projects;
 using Toarnbeike.AppLibrary.TicketApp.WorkItemTasks;
 using Toarnbeike.AppLibrary.Transitions;
+using Toarnbeike.Optional;
 using Toarnbeike.Results;
 using Toarnbeike.Results.Extensions;
 using Toarnbeike.Results.Rules;
@@ -16,6 +18,7 @@ namespace Toarnbeike.AppLibrary.TicketApp.WorkItems;
 /// </summary>
 /// <remarks>Serves as a base type for domain-specific work item variants.</remarks>
 /// <param name="Id">The unique identifier of the work item.</param>
+/// <param name="ProjectId">The identifier of the project to which the work item belongs.</param>
 /// <param name="Name">The display name of the work item.</param>
 /// <param name="Description">The detailed description of the work item.</param>
 /// <param name="Type">The category or kind of work item.</param>
@@ -24,59 +27,63 @@ namespace Toarnbeike.AppLibrary.TicketApp.WorkItems;
 /// <param name="Tasks">The tasks associated with the work item.</param>
 public abstract record WorkItem(
     WorkItemId Id, 
+    ProjectId ProjectId,
     string Name,
     string Description,
     string Type, 
-    int? Effort, 
+    Option<int> Effort, 
     WorkItemState Status, 
     ImmutableList<WorkItemTask> Tasks) : IAggregate<WorkItemId>, IAuditable<WorkItem>
 {
     /// <summary>
     /// Creates a new bug work item transition in the New state.
     /// </summary>
+    /// <param name="projectId">The identifier of the project to which the bug belongs.</param>
     /// <param name="name">Bug title. Must be between 3 and 100 characters.</param>
     /// <param name="description">Bug details.</param>
     /// <param name="reproduceSteps">Steps required to reproduce the issue.</param>
     /// <param name="impact">Impact level of the bug.</param>
     /// <returns>A successful result containing the created transition for the bug as a work item when validation passes;
     /// otherwise, a failed result.</returns>
-    public static Result<Transition<WorkItem>> CreateBug(string name, string description, string reproduceSteps, int impact) =>
+    public static Result<Transition<WorkItem>> CreateBug(ProjectId projectId, string name, string description, string reproduceSteps, int impact) =>
         Result.Success()
             .Ensure(() => name).LengthBetween(3, 100)
             .Ensure(_ => impact).Positive()
             .Map(_ => new Bug(
-                WorkItemId.New(), name, description, reproduceSteps, impact, null, WorkItemState.New, [])
+                WorkItemId.New(), projectId, name, description, reproduceSteps, impact, Option.None, WorkItemState.New, [])
                 .Created<Bug, WorkItem>());
 
     /// <summary>
     /// Creates a new feature work item transition in the New state.
     /// </summary>
+    /// <param name="projectId">The identifier of the project to which the feature belongs.</param>
     /// <param name="name">Feature title, Must be between 3 and 100 characters.</param>
     /// <param name="description">Feature details.</param>
     /// <param name="requestedBy">Name of the requester.</param>
     /// <param name="businessValue">Business value score, which must be greater than zero.</param>
     /// <returns>A successful result containing the created transition for the feature as a work item when validation passes;
     /// otherwise, a failed result.</returns>
-    public static Result<Transition<WorkItem>> CreateFeature(string name, string description, string requestedBy, int businessValue) =>
+    public static Result<Transition<WorkItem>> CreateFeature(ProjectId projectId, string name, string description, string requestedBy, int businessValue) =>
         Result.Success()
             .Ensure(() => name).LengthBetween(3, 100)
             .Ensure(_ => businessValue).Positive()
             .Map(_ => new Feature(
-                WorkItemId.New(), name, description, requestedBy, businessValue, null, WorkItemState.New, [])
+                WorkItemId.New(), projectId, name, description, requestedBy, businessValue, Option.None, WorkItemState.New, [])
                 .Created<Feature, WorkItem>());
 
     /// <summary>
     /// Creates a new refactoring work item transition in the New state.
     /// </summary>
+    /// <param name="projectId">The identifier of the project to which the refactoring belongs.</param>
     /// <param name="name">Refactoring title, Must be between 3 and 100 characters.</param>
     /// <param name="description">Refactoring details.</param>
     /// <returns>A successful result containing the created transition for the refactoring as a work item when validation passes;
     /// otherwise, a failed result.</returns>
-    public static Result<Transition<WorkItem>> CreateRefactoring(string name, string description) =>
+    public static Result<Transition<WorkItem>> CreateRefactoring(ProjectId projectId, string name, string description) =>
         Result.Success()
             .Ensure(() => name).LengthBetween(3, 100)
             .Map(_ => new Refactoring(
-                WorkItemId.New(), name, description, null, WorkItemState.New, [])
+                WorkItemId.New(), projectId, name, description, Option.None, WorkItemState.New, [])
                 .Created<Refactoring, WorkItem>());
 
     /// <summary>
