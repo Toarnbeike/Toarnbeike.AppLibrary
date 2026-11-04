@@ -41,6 +41,7 @@ jobs:
           projects=(
             "tests/Entities.Tests/Entities.Tests.csproj"
             "tests/Core.Tests/Core.Tests.csproj"
+            "tests/State.Tests/State.Tests.csproj"
           )
 
           for project in "${projects[@]}"; do
