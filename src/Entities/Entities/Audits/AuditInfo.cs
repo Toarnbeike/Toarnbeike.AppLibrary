@@ -1,4 +1,6 @@
-﻿namespace Toarnbeike.AppLibrary.Entities.Audits;
+﻿using Toarnbeike.Optional;
+
+namespace Toarnbeike.AppLibrary.Entities.Audits;
 
 /// <summary>
 /// Audit information for an entity, including creation and last modification details.
@@ -10,8 +12,8 @@
 public readonly record struct AuditInfo(
     DateTimeOffset CreatedAt,
     string CreatedBy,
-    DateTimeOffset? LastModifiedAt,
-    string? LastModifiedBy)
+    Option<DateTimeOffset> LastModifiedAt,
+    Option<string> LastModifiedBy) : IValueObject
 {
     /// <summary>
     /// Initializes an empty <see cref="AuditInfo"/> instance.

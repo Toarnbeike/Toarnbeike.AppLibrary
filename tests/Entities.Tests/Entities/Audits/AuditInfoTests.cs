@@ -1,4 +1,6 @@
-﻿namespace Toarnbeike.AppLibrary.Entities.Audits;
+﻿using Toarnbeike.Optional.TestExtensions;
+
+namespace Toarnbeike.AppLibrary.Entities.Audits;
 
 public class AuditInfoTests
 {
@@ -8,8 +10,8 @@ public class AuditInfoTests
         var emptyAuditInfo = AuditInfo.Empty;
         emptyAuditInfo.CreatedAt.ShouldBe(default);
         emptyAuditInfo.CreatedBy.ShouldBeNull();
-        emptyAuditInfo.LastModifiedAt.ShouldBeNull();
-        emptyAuditInfo.LastModifiedBy.ShouldBeNull();
+        emptyAuditInfo.LastModifiedAt.ShouldBeNone();
+        emptyAuditInfo.LastModifiedBy.ShouldBeNone();
     }
 
     [Test]
@@ -24,8 +26,8 @@ public class AuditInfoTests
         updated.CreatedAt.ShouldBe(createdAt);
         updated.CreatedBy.ShouldBe("newUser");
 
-        updated.LastModifiedAt.ShouldBeNull();
-        updated.LastModifiedBy.ShouldBeNull();
+        updated.LastModifiedAt.ShouldBeNone();
+        updated.LastModifiedBy.ShouldBeNone();
     }
 
     [Test]

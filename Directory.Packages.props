@@ -10,7 +10,7 @@
 	<PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.14" />
   </ItemGroup>
   <ItemGroup Label="Toarnbeike">
-    <PackageVersion Include="Toarnbeike.Optional.Abstractions" Version="2.1.0" />
+    <PackageVersion Include="Toarnbeike.Optional" Version="2.1.0" />
     <PackageVersion Include="Toarnbeike.Results" Version="3.0.0-beta.2" />
     <PackageVersion Include="Toarnbeike.Results.Rules" Version="3.0.0-beta.2" />
   </ItemGroup>

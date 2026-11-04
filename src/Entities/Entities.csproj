@@ -5,7 +5,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Toarnbeike.Optional.Abstractions" />
+		<PackageReference Include="Toarnbeike.Optional" />
 		<PackageReference Include="Toarnbeike.Results" />
 	</ItemGroup>
 

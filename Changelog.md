@@ -9,7 +9,7 @@ Initial release (internal)
 
 ### Added
 - `Core` library with:
-	- Extensions for DateTime and formatting Type Names.
+	- Extensions for DateTime, Linq and formatting Type Names.
 	- Application services `IDateTimeProvider` and `ICurrentUserProvider` with default implementations and default DI registration call.
 	- Extensions for `OptionsBuilder<T>` to add data annotation validation for nested option values.
 	- Extensions for `IServiceCollection` to replace all registrations and to register all implementations of a given interface type.
@@ -20,6 +20,12 @@ Initial release (internal)
 	- Transitions for immutable domain objects, with extensions.
 	- Domain failures with extensions
 	- DomainEvents
+
+- `State` library with:
+	- Snapshot management for aggregates, including mapping, migrations, and dependency injection registration.
+	- Application state management, including loading, saving, and tracking initialization and modification status.
+	- Mutations, with an in memory mutation store and batching support.
+	- Read repositories for aggregates, backed by loaded snapshots.
 
 - `TicketApp` (example app) with:
 	- Domain model for a ticketing system, with detailed transition logic and domain validation.

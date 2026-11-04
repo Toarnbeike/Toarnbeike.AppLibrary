@@ -1,15 +1,17 @@
-﻿namespace Toarnbeike.AppLibrary.Entities.Audits;
+﻿using Toarnbeike.Optional;
+
+namespace Toarnbeike.AppLibrary.Entities.Audits;
 
 /// <summary>
 /// Soft delete information for an entity, including deletion status and details.
 /// </summary>
 /// <param name="IsDeleted">Indicates whether the entity is deleted.</param>
-/// <param name="Deleted">The date and time when the entity was deleted.</param>
+/// <param name="DeletedAt">The date and time when the entity was deleted.</param>
 /// <param name="DeletedBy">The user who deleted the entity.</param>
 public readonly record struct SoftDeleteInfo(
     bool IsDeleted,
-    string? DeletedBy,
-    DateTimeOffset? Deleted)
+    Option<string> DeletedBy,
+    Option<DateTimeOffset> DeletedAt) : IValueObject
 {
     /// <summary>
     /// Initializes an empty <see cref="SoftDeleteInfo"/> instance.

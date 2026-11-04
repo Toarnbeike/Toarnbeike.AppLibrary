@@ -1,4 +1,6 @@
-﻿namespace Toarnbeike.AppLibrary.Entities.Audits;
+﻿using Toarnbeike.Optional.TestExtensions;
+
+namespace Toarnbeike.AppLibrary.Entities.Audits;
 
 public class AuditableExtensionTests
 {
@@ -14,8 +16,8 @@ public class AuditableExtensionTests
 
         updatedEntity.AuditInfo.CreatedAt.ShouldBe(createdAt);
         updatedEntity.AuditInfo.CreatedBy.ShouldBe("newUser");
-        updatedEntity.AuditInfo.LastModifiedAt.ShouldBeNull();
-        updatedEntity.AuditInfo.LastModifiedBy.ShouldBeNull();
+        updatedEntity.AuditInfo.LastModifiedAt.ShouldBeNone();
+        updatedEntity.AuditInfo.LastModifiedBy.ShouldBeNone();
     }
 
     [Test]

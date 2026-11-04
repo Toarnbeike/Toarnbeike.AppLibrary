@@ -13,10 +13,12 @@
   <Folder Name="/src/">
     <Project Path="src/Core/Core.csproj" />
     <Project Path="src/Entities/Entities.csproj" />
+    <Project Path="src/State/State.csproj" Id="190eaec1-6d1d-4ecc-a97d-7c54b981f3e4" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Core.Tests/Core.Tests.csproj" />
     <Project Path="tests/Entities.Tests/Entities.Tests.csproj" />
+    <Project Path="tests/State.Tests/State.Tests.csproj" Id="8b6286a8-4411-47ea-8949-7d92a94eda49" />
   </Folder>
   <Folder Name="/workflows/">
     <File Path=".github/workflows/build.yaml" />

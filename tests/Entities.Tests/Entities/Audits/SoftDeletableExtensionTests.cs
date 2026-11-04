@@ -13,6 +13,6 @@ public class SoftDeletableExtensionTests
 
         updatedEntity.SoftDeleteInfo.IsDeleted.ShouldBe(true);
         updatedEntity.SoftDeleteInfo.DeletedBy.ShouldBe("deleter");
-        updatedEntity.SoftDeleteInfo.Deleted.ShouldBe(deletedAt);
+        updatedEntity.SoftDeleteInfo.DeletedAt.ShouldBe(deletedAt);
     }
 }
